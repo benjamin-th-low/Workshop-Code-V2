@@ -120,11 +120,13 @@ def initialize_session_state( menu_funcs, default_value):
 	st.session_state.func_options = {key: default_value for key in menu_funcs.keys()}
 
 def main():
+
 	try:
 		if "title_page"	not in st.session_state:
 			st.session_state.title_page = DEFAULT_TITLE 
 
-		st.title(st.session_state.title_page)
+		# st.title(st.session_state.title_page)
+		st.title("TEST TEST")
 		sac.divider(label='ETD & ITD MOE Project', icon='house', align='center', direction='horizontal', dashed=False, bold=False)
 		
 		if "api_key" not in st.session_state:
