@@ -125,8 +125,7 @@ def main():
 		if "title_page"	not in st.session_state:
 			st.session_state.title_page = DEFAULT_TITLE 
 
-		# st.title(st.session_state.title_page)
-		st.title("TEST TEST 6789")
+		st.title(st.session_state.title_page)
 		sac.divider(label='ETD & ITD MOE Project', icon='house', align='center', direction='horizontal', dashed=False, bold=False)
 		
 		if "api_key" not in st.session_state:
