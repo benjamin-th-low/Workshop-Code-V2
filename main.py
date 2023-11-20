@@ -123,7 +123,8 @@ def main():
 
 	try:
 		if "title_page"	not in st.session_state:
-			st.session_state.title_page = DEFAULT_TITLE 
+			# st.session_state.title_page = DEFAULT_TITLE 
+			pass
 
 		st.title(st.session_state.title_page)
 		sac.divider(label='ETD & ITD MOE Project', icon='house', align='center', direction='horizontal', dashed=False, bold=False)
