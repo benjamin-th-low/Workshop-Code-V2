@@ -104,9 +104,7 @@ def get_reply(prompt):
 	return replies.get(prompt, "I am sorry, I am unable to help you with your query.")
 
 #Exercise and challenge 2
-def rule_based_chatbot():
-
-	st.title("Echo Bot to Rule Based Bot")
+def echo_chatbot():
 
 	# Initialize chat history
 	if "messages" not in st.session_state:
@@ -134,6 +132,44 @@ def rule_based_chatbot():
 			st.markdown(response)
 		# Add assistant response to chat history
 		st.session_state.messages.append({"role": "assistant", "content": response})
+
+def rule_based_chatbot():
+	st.write("Rules for the chatbot:")
+	df = pd.DataFrame(
+		[
+			{"prompt": "Hello", "response": "Hi there what can I do for you"},
+			{
+				"prompt": "What is your name?",
+				"response": "My name is EAI , an electronic artificial being"
+			},
+			{"prompt": "How old are you?", "response": "Today is my birthday!"},
+		]
+	)
+
+	edited_df = st.data_editor(df, num_rows="dynamic")
+	st.divider()
+	# Initialize chat history
+	if "messages" not in st.session_state:
+		st.session_state.messages = []
+
+	# Display chat messages from history on app rerun
+	for message in st.session_state.messages:
+		with st.chat_message(message["role"]):
+			st.markdown(message["content"])
+
+	# React to user input
+	if prompt := st.chat_input("Enter your prompt"):
+		if prompt in edited_df["prompt"].values:
+			reply = edited_df.loc[edited_df["prompt"] == prompt]["response"].values[0]
+		else:
+			reply = "I don't understand"
+
+		with st.chat_message("user"):
+			st.write(prompt)
+			st.session_state.messages.append({"role": "user", "content": prompt})
+		with st.chat_message("assistant"):
+			st.write(reply)
+			st.session_state.messages.append({"role": "assistant", "content": reply})
 
 #Exercise 3
 def api_call_exercise():
@@ -169,6 +205,10 @@ def api_call_exercise():
 
 #challenge 3 is to create a function call_api to pass the prompt design and variables to call the OpenAI API 
 def call_api_challenge():
+	#enter your code here
+	pass
+
+def call_api_challenge_modelanswer():
 	prompt_design = st.text_input("Enter your the prompt design for the API call:", value="You are a helpful assistant.")
 	prompt_query = st.text_input("Enter your prompt query:", value="Tell me about Singapore in the 1970s in 50 words.")
 	if st.button("Call the API"):
@@ -221,8 +261,6 @@ def open_api_call(prompt_design, prompt):
 #Exercise 4 - building a chatbot using the OpenAI API
 def ai_chatbot():
 
-	st.title("Rule Based Bot to AI Chatbot")
-
 	# Initialize chat history
 	if "messages" not in st.session_state:
 		st.session_state.messages = []
@@ -241,15 +279,14 @@ def ai_chatbot():
 		st.session_state.messages.append({"role": "user", "content": prompt})
 		
 		#modify the code below to create an AI chatbot ( challenge 4)
-		response = get_reply(prompt)
-		#response = open_api_call("You are a helpful assistant", prompt)
+		response = get_reply(prompt) #this is rule-based
+		# response = api_call("You are a helpful assistant", prompt)
 
 		# Display assistant response in chat message container
 		with st.chat_message("assistant"):
 			st.markdown(response)
 		# Add assistant response to chat history
 		st.session_state.messages.append({"role": "assistant", "content": response})
-
 
 # Exercise 5 - Customising the AI chatbot with streaming
 def chat_completion_stream(prompt_design, prompt):
@@ -302,7 +339,6 @@ def basebot():
 # Exercise 6 - Set the prompt design for the chatbot
 def prompt_design():
 
-	st.title("Prompt Design")
 	if "prompt_template" not in st.session_state:
 		st.session_state.prompt_template = "You are a helpful assistant."
 	name = st.text_input("Enter your name:", value="John Doe")
@@ -334,6 +370,7 @@ def basebot_prompt_design():
 				message_placeholder = st.empty()
 				full_response = ""
 				# streaming function
+				# for response in chat_completion_stream("you are a helpful assistant", prompt):
 				for response in chat_completion_stream(st.session_state.prompt_template, prompt):
 					full_response += (response.choices[0].delta.content or "")
 					message_placeholder.markdown(full_response + "▌")
@@ -362,8 +399,6 @@ def memory_variables():
 
 # Challenge 7 - Set the prompt design for the chatbot
 def prompt_design_memory():
-
-	st.title("Prompt Design with Memory")
 	if "prompt_template" not in st.session_state:
 		st.session_state.prompt_template = "You are a helpful assistant."
 	name = st.text_input("Enter your name:", value="John Doe")

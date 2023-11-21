@@ -123,7 +123,7 @@ def main():
 
 	try:
 		if "title_page"	not in st.session_state:
-			# st.session_state.title_page = DEFAULT_TITLE 
+			st.session_state.title_page = DEFAULT_TITLE 
 			pass
 
 		st.title(st.session_state.title_page)
@@ -221,7 +221,7 @@ def main():
 		initialise_admin_account()
 		#PLEASE REMOVE THIS 
 		#st.write("User Profile: ", st.session_state.user)
-		
+
 		#PLEASE REMOVE ABOVE
 		with st.sidebar: #options for sidebar
 			
@@ -367,37 +367,70 @@ def main():
 			pass
 		elif st.session_state.option == 'Streamlit App (Exercise)':
 			#st.write("Call your streamlit_app function here")
+			st.markdown("""Below is an example form you can create using streamlit.  
+			   Try creating a simple form of your own in another function and call that function.""")
 			ex.streamlit_app()
 			pass
 		elif st.session_state.option == 'Rule Based Chatbot (Exercise)':
 			# Code for Rule Based Chatbot Exercise
+			st.title("Rule Based Bot")
+			st.markdown("""Below is a simple example of chatbot that is programmed using fixed rules.  
+			   No Gen AI capability (yet).  
+			   Try playing around with the rules and see how your chatbot responds. """)
 			ex.rule_based_chatbot()
 			pass
 		elif st.session_state.option == 'Open AI API Call (Exercise)':
 			# Code for Open AI API Call Exercise
+			st.markdown("""Now, we'll be calling the OpenAI API for the first time to create a Gen AI chatbot.  
+			   This is in the existing exercise code:  
+			   `{"role": "system", "content": "Speak like a pirate"},  
+			   {"role": "user", "content": "Tell me the story about Singapore in the 1970s in 50 words."}
+			   `  
+			   Now, adapt the exercise code into the `call_api_challenge` function, try and input the parameters based on the user input for the AI role and user prompt.
+				""")
 			ex.api_call_exercise()
-			ex.call_api_challenge()
+			# ex.call_api_challenge() 
 			pass
 		elif st.session_state.option == 'OpenAI Basebot':
+			st.title("From rule-based to AI Chatbot")
+			st.markdown("""Now, the chatbot is based on the following rules:
+			   `"Hello": "Hi there, what can I do for you?",
+		"What is your name?": "My name is EAI, an electronic artificial being.",
+		"How old are you?": "Today is my birthday!"`  
+			   Add a line of code in the `ai_chatbot` function to call the function `api_call` to convert it into an AI chatbot!
+			   """)
 			ex.ai_chatbot()
 			pass
 		elif st.session_state.option == 'OpenAI Basebot with streaming':
+			st.markdown("""Now, we are going to add streaming into the chatbot response so the user does not have to wait too long for a response from the chatbot.  
+			   The `chat_completion_stream` function makes this possible.""")
 			ex.basebot()
 			pass
 		elif st.session_state.option == 'Prompt Design Template':
-			# Code 
+			st.title("Prompt Design")
+			st.markdown("""Look at the code for `prompt_design()` and see how it sets and stores the `prompt_template` variable as defined by the user in the session state.""")
 			ex.prompt_design()
 			pass
 		elif st.session_state.option == 'OpenAI Basebot with Prompt Design':
 			# Code for Agent Chatbot Exercise
+			st.markdown("""The chatbot below is not responding to the prompt template design as input by the user.  
+			It is currently a "helpful assistant". You want it to perform a role as described by the user.  
+			Think of a way to make use of the `prompt_design()` function for the `basebot_prompt_design()` code to make it perform a role based on the user input.  
+			Hint: the `prompt_design()` function sets the `prompt_template` variable in the session_state.
+			""")
 			ex.prompt_design()
 			ex.basebot_prompt_design()
 			pass
 		elif st.session_state.option == 'Memory':
 			# Code for Agent Chatbot Exercise
+			st.markdown("""Now, we will introduce a concept called "memory" in our chatbot.  
+			   In the `return_memory()` function, by setting the variable `k`, we can set the number of previous user interactions that the chatbot has memory of.  
+			   For now, we hardcoded some ineractions. In our next exercise, we will integrate memory into our chatbot to remember actual user interactions.
+ """)
 			ex.return_memory()
 			pass
 		elif st.session_state.option == 'OpenAI Basebot with Memory':
+			st.title("Prompt Design with Memory")
 			# Code for Agent Chatbot Exercise
 			ex.prompt_design_memory()
 			ex.basebot_prompt_design_memory()
