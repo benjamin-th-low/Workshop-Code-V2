@@ -338,7 +338,6 @@ def basebot():
 
 # Exercise 6 - Set the prompt design for the chatbot
 def prompt_design():
-
 	if "prompt_template" not in st.session_state:
 		st.session_state.prompt_template = "You are a helpful assistant."
 	name = st.text_input("Enter your name:", value="John Doe")
@@ -404,8 +403,9 @@ def prompt_design_memory():
 	name = st.text_input("Enter your name:", value="John Doe")
 	memory = memory_variables()
 	prompt_design = st.text_input("Enter your the prompt design for the chatbot:", value="You are a helpful assistant.")
+	# st.session_state.prompt_template = prompt_design
 	if prompt_design and name:
-		st.success("Prompt Design" + prompt_design + " .You are talking to a person called " + name + "." + "previous conversation" + memory['history'])
+		st.success("Prompt Design: " + prompt_design + " You are talking to a person called " + name + "." + " Previous conversation: " + memory['history'])
 
 #Challenge 7 - Set the prompt design for the chatbot for the AI Chatbot
 #Hint Replace You are a helpful assistant with the prompt design variable

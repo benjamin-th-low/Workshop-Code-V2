@@ -269,7 +269,7 @@ def main():
 							sac.MenuItem("OpenAI Basebot with Prompt Design", icon='filetype-py'),
 							sac.MenuItem("Memory", icon='filetype-py'),
 							sac.MenuItem("OpenAI Basebot with Memory", icon='filetype-py'),
-							sac.MenuItem("RAG", icon='filetype-py'),
+							sac.MenuItem("R A G", icon='filetype-py'),
 							sac.MenuItem("OpenAI Basebot with Memory & RAG", icon='filetype-py'),
 							sac.MenuItem("Database", icon='filetype-py'),
 							sac.MenuItem("OpenAI Basebot with Memory & RAG & recorded", icon='filetype-py'),
@@ -431,16 +431,32 @@ def main():
 			pass
 		elif st.session_state.option == 'OpenAI Basebot with Memory':
 			st.title("Prompt Design with Memory")
+			st.markdown("""Similar to a previous exercise, the chatbot below is not responding to the prompt template design as input by the user.  
+			It is currently a "helpful assistant". You want it to perform a role as described by the user.  
+			Think of a way to make use of the `prompt_design_memory()` function for the `basebot_prompt_design()` code to make it perform a role based on the user input.  
+			Hint: does the `prompt_design_memory()` function set the `prompt_template` variable in the session_state?  
+			Note that now the `prompt_design_memory()` function is able to keep track of the some of latest user chat history. 
+			""")
 			# Code for Agent Chatbot Exercise
 			ex.prompt_design_memory()
 			ex.basebot_prompt_design_memory()
 			pass
-		elif st.session_state.option == 'RAG':
+		elif st.session_state.option == 'R A G':
+			st.title("Retrieval Augmented Generation")
+			st.markdown("""RAG is one of the most popular use cases for AI chatbots.  
+			   RAG is just a fancy name for a Q&A chatbot who has access to documents uploaded by the user as a reference.  
+			   For the following exercise to work, please upload a document first in "Files Management" under "Knowledge Base Tools".  
+			   You will also need to edit the settings in "Knowledge Base Editor" to assign a knowledge base to a user.    			   
+			   Then click on the "Build Vectorstore" button to create the knowledge base and assign it.    
+			   Then ask the chatbot about something specific to only that document. It will not answer your query directly but show you which content and location in the document is most relevant to your query.""")
 			# Code for Agent Chatbot Exercise
 			ex.show_rag_results()
 			pass
 		elif st.session_state.option == 'OpenAI Basebot with Memory & RAG':
+			st.markdown("""Now let's combine the prompt design  template with RAG.  
+			   Try out and see if the chatbot is able to use your prompt design as well as RAG.""")
 			# Code for Agent Chatbot Exercise
+			ex.prompt_design()
 			ex.basebot_prompt_design_memory_rag()
 			pass
 		elif st.session_state.option == 'Database':
